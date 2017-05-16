@@ -1,0 +1,42 @@
+QUESTIONS:-
+● What are ACID properties and Explain Transactions in Hive.
+● Refer Our below blog and perform Hive Transaction Operations.
+
+ANSWER:-
+ACID stands for (1)Atomicity
+                (2)Consistency
+                (3)Isolatio
+                (4)Durability
+
+1)Atomicity means, a transaction should complete successfully or else it should fail completely i.e. it should not be left partially. 
+
+2)Consistency ensures that any transaction will bring the database from one valid state to another state.
+
+3)Isolation states that every transaction should be independent of each other i.e. one transaction should not affect another, and
+
+4)Durability states that if a transaction is completed, it should be preserved in the database even if the machine state is lost or a system failure might occur.
+
+These ACID properties are essential for a transaction and every transaction should ensure that these properties are met.
+
+Transactions with ACID semantics have been added to Hive to address the following use cases:
+1.	Streaming ingest of data 
+2.	Slow changing dimensionsData restatement.  Sometimes collected data is found to be incorrect and needs correction. 
+3.	Starting with Hive 0.14 these use cases can be supported via INSERT, UPDATE, and DELETE.
+4.	Bulk updates using SQL MERGE statement.
+Transactions in Hive
+
+Transactions in Hive are introduced in Hive 0.13, but they only partially fulfill the ACID properties like atomicity, consistency, durability, at the partition level. Here, Isolation can be provided by turning on one of the locking mechanisms available with zookeeper or in memory.
+But in Hive 0.14, new API’s have been added to completely fulfill the ACID properties while performing any transaction.
+Transactions are provided at the row-level in Hive 0.14. The different row-level transactions available in Hive 0.14 are as follows:
+1. Insert
+2. Delete
+3.	Update
+
+There are numerous limitations with the present transactions available in Hive 0.14. ORC is the file format supported by Hive transaction. It is now essential to have ORC file format for performing transactions in Hive. The table needs to be bucketed in order to support transactions.
+Row-level Transactions Available in Hive 0.14
+Let’s perform some row-level transactions available in Hive 0.14. Before creating a Hive table that supports transactions, the transaction features present in Hive needs to be turned on, as by default they are turned off.
+The below properties needs to be set appropriately in hive shell , order-wise to work with transactions in Hive:
+
+|||||||||||||||||||IMAGES IS ATTACHED|||||||||||||||||||||
+
+
